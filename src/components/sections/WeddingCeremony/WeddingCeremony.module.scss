@@ -1,0 +1,332 @@
+@use "../../../styles/animations.scss" as *;
+@use "../../../styles/variables.scss" as *;
+
+.ceremony {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: clamp(40px, 7vw, 80px) clamp(15px, 3vw, 40px);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__divider_top {
+    @include slideDown;
+  }
+
+  &__divider_middle {
+    @include fadeInDelay(0.5s);
+  }
+
+  &__divider_bottom {
+    @include slideUp;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 2vw, 20px);
+    padding: clamp(30px, 4vw, 50px) clamp(15px, 2.5vw, 30px);
+    color: $color-white;
+    font-family: "EB Garamond", serif;
+    text-align: center;
+
+    &_first {
+      @include slideUpLeft;
+    }
+
+    &_second {
+      @include slideUpRight;
+    }
+
+    h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: $h2-mobile;
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      margin-bottom: clamp(8px, 1.5vw, 15px);
+      letter-spacing: clamp(4px, 1vw, 10px);
+      margin-top: 0;
+    }
+
+    h3 {
+      font-size: $h3-mobile;
+      font-weight: 400;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+      margin: 0;
+    }
+
+    p {
+      font-size: $body-mobile;
+      font-style: italic;
+      opacity: 0.9;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+      margin: 0;
+    }
+  }
+
+  &__date {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 2vw, 25px);
+    margin: clamp(8px, 1.5vw, 15px) 0;
+    margin-right: clamp(10px, 2vw, 25px);
+
+    h3 {
+      @include fluid-font(1.2rem, 2.5rem);
+      font-weight: 500;
+      color: $color-white;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+      margin: 0;
+
+      &:nth-child(3) {
+        @include fluid-font(3rem, 7rem);
+        font-weight: 700;
+        color: $color-white;
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9);
+      }
+    }
+  }
+
+  &__slash {
+    width: clamp(1px, 0.2vw, 3px);
+    height: clamp(40px, 8vw, 80px);
+    background-color: $color-white;
+    opacity: 0.6;
+  }
+}
+
+.decorative__divider {
+  width: 100%;
+  max-width: clamp(200px, 40vw, 400px);
+  height: clamp(30px, 5vw, 50px);
+  margin: clamp(20px, 3vw, 40px) auto;
+  display: block;
+  opacity: 0.9;
+}
+
+// Mobile adjustments
+@include max-sm {
+  .ceremony {
+    background-attachment: scroll;
+    padding: 35px 12px;
+
+    &__item {
+      padding: 25px 12px;
+      gap: 10px;
+
+      h1 {
+        font-size: 2.5rem;
+        letter-spacing: 4px;
+      }
+
+      h3 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: $body-mobile;
+      }
+    }
+
+    &__date {
+      gap: 10px;
+
+      h3 {
+        font-size: 1.2rem;
+
+        &:nth-child(3) {
+          font-size: 3rem;
+        }
+      }
+    }
+
+    &__slash {
+      height: 35px;
+    }
+  }
+
+  .decorative__divider {
+    max-width: 180px;
+    height: 25px;
+    margin: 15px auto;
+  }
+}
+
+// Tablet adjustments
+@include between($breakpoint-md, $breakpoint-lg) {
+  .ceremony {
+    &__item {
+      h1 {
+        font-size: 3.5rem;
+        letter-spacing: 6px;
+      }
+    }
+  }
+}
+
+// Desktop enhancements (1366x768)
+@include min-lg {
+  .ceremony {
+    padding: 50px 30px;
+
+    &__content {
+      max-width: 1000px;
+    }
+
+    &__item {
+      padding: 35px 25px;
+      gap: 15px;
+
+      h1 {
+        font-size: $h2-laptop;
+        letter-spacing: 6px;
+        margin-bottom: 12px;
+      }
+
+      h3 {
+        font-size: $h3-laptop;
+      }
+
+      p {
+        font-size: $body-laptop;
+      }
+    }
+
+    &__date {
+      gap: 18px;
+
+      h3 {
+        font-size: 1.8rem;
+
+        &:nth-child(3) {
+          font-size: 4.5rem;
+        }
+      }
+    }
+
+    &__slash {
+      height: 60px;
+    }
+  }
+
+  .decorative__divider {
+    max-width: 350px;
+    height: 45px;
+    margin: 35px auto;
+  }
+}
+
+// Large desktop
+@include min-xxl {
+  .ceremony {
+    padding: 70px 40px;
+    background-position: center 30%;
+
+    &__content {
+      max-width: 1200px;
+    }
+
+    &__item {
+      padding: 50px 35px;
+      gap: 18px;
+
+      h1 {
+        font-size: $h2-desktop;
+        letter-spacing: 10px;
+        margin-bottom: 15px;
+      }
+
+      h3 {
+        font-size: $h3-desktop;
+      }
+
+      p {
+        font-size: $body-desktop;
+      }
+    }
+
+    &__date {
+      gap: 25px;
+
+      h3 {
+        font-size: 2.8rem;
+
+        &:nth-child(3) {
+          font-size: 7.5rem;
+        }
+      }
+    }
+
+    &__slash {
+      height: 85px;
+    }
+  }
+
+  .decorative__divider {
+    max-width: 450px;
+    height: 55px;
+    margin: 45px auto;
+  }
+}
+
+// Extra large desktop
+@include min-4k {
+  .ceremony {
+    padding: 90px 50px;
+
+    &__item {
+      h1 {
+        font-size: $h2-xxl;
+        letter-spacing: 12px;
+      }
+
+      h3 {
+        font-size: $h3-xxl;
+      }
+
+      p {
+        font-size: $body-xxl;
+      }
+    }
+
+    &__date {
+      h3 {
+        font-size: 3rem;
+
+        &:nth-child(3) {
+          font-size: 8rem;
+        }
+      }
+    }
+  }
+}

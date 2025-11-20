@@ -1,0 +1,135 @@
+@use '../../../styles/animations.scss' as *;
+@use '../../../styles/variables.scss' as *;
+
+$shadow-text: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    @include zoomIn;
+
+    h1 {
+      font-size: $h1-mobile;
+      font-weight: 600;
+      color: $color-white;
+      font-family: 'Great Vibes', cursive;
+      text-wrap: nowrap;
+      text-shadow: $shadow-text;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: $large-mobile;
+      font-weight: 400;
+      color: $color-white;
+      text-shadow: $shadow-text;
+      margin: 0.5rem 0 1rem;
+      text-align: center;
+    }
+  }
+}
+
+// Responsive adjustments
+@include max-sm {
+  .hero {
+    background-attachment: scroll;
+
+    &__content {
+      bottom: 10%;
+
+      h1 {
+        font-size: $h1-mobile;
+      }
+
+      p {
+        font-size: $large-mobile;
+        margin: 0.5rem 0;
+      }
+    }
+  }
+}
+
+@include min-lg {
+  .hero {
+    &__content {
+      bottom: 8%;
+
+      h1 {
+        font-size: $h1-laptop;
+      }
+
+      p {
+        font-size: $large-laptop;
+      }
+    }
+  }
+}
+
+@include min-laptop {
+  .hero {
+    background-position: center 40%;
+  }
+}
+
+@include min-xxl {
+  .hero {
+    background-position: center 35%;
+
+    &__content {
+      bottom: 10%;
+
+      h1 {
+        font-size: $h1-desktop;
+      }
+
+      p {
+        font-size: $large-desktop;
+      }
+    }
+  }
+}
+
+@include min-4k {
+  .hero {
+    &__content {
+      h1 {
+        font-size: $h1-xxl;
+      }
+
+      p {
+        font-size: $large-xxl;
+      }
+    }
+  }
+}

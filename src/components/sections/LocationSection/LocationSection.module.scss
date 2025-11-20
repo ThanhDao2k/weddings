@@ -1,0 +1,242 @@
+@use '../../../styles/animations.scss' as *;
+@use '../../../styles/variables.scss' as *;
+
+.location {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: clamp(10px, 2vw, 30px) 0;
+  border-radius: 8px;
+  padding: 0 clamp(10px, 2vw, 40px);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1400px;
+    gap: clamp(15px, 2vw, 30px);
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(233 245 226);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: clamp(18px, 2.5vw, 35px);
+    gap: clamp(8px, 1.5vw, 15px);
+    margin: clamp(15px, 2vw, 25px);
+    border-radius: clamp(8px, 1vw, 12px);
+    color: #776d6d;
+    font-weight: 400;
+    width: 100%;
+    max-width: 600px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      border-bottom: 1px solid #6d6969;
+      padding-bottom: clamp(8px, 1vw, 12px);
+      width: 100%;
+      text-align: center;
+      @include fluid-font(1.8rem, 3rem);
+      font-weight: 700;
+      margin: 0;
+    }
+
+    &__groom {
+      @include slideLeftBounce;
+    }
+
+    &__bride {
+      @include slideRightBounce;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(5px, 1vw, 10px);
+    width: 100%;
+  }
+
+  &__event {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include fluid-space(gap, 5px, 8px);
+    @include fluid-font(1rem, 1.5rem);
+    font-weight: 400;
+  }
+
+  &__address {
+    text-align: center;
+    @include fluid-font(0.95rem, 1.3rem);
+    line-height: 1.6;
+    padding: 0 5px;
+  }
+
+  &__button {
+    @include fluid-font(0.95rem, 1.2rem);
+    font-weight: 500;
+    cursor: pointer;
+    color: $color-white;
+    text-decoration: none;
+    background-color: $color-primary;
+    padding: clamp(10px, 1.5vw, 14px) clamp(18px, 2.5vw, 28px);
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    display: inline-block;
+
+    &:hover {
+      background-color: $color-white;
+      color: $color-primary;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(109, 102, 86, 0.3);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  &__logo {
+    margin: clamp(20px, 3vw, 30px) 0;
+    width: clamp(120px, 15vw, 180px);
+    height: clamp(120px, 15vw, 180px);
+    object-fit: cover;
+    border-radius: 50%;
+    @include zoomIn;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
+}
+
+// Laptop: show both sections side by side (1366x768)
+@include min-lg {
+  .location {
+    padding: 0 40px;
+
+    &__content {
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+
+    &__item {
+      flex: 1;
+      max-width: none;
+      margin: 15px;
+      padding: 25px;
+
+      h1 {
+        font-size: 2.5rem;
+        padding-bottom: 12px;
+      }
+    }
+
+    &__event {
+      font-size: 1.2rem;
+    }
+
+    &__address {
+      font-size: 1.05rem;
+    }
+
+    &__button {
+      font-size: 1rem;
+      padding: 12px 25px;
+    }
+
+    &__logo {
+      width: 150px;
+      height: 150px;
+      margin: 25px 0;
+    }
+  }
+}
+
+// Large desktop
+@include min-xxl {
+  .location {
+    padding: 0 60px;
+
+    &__content {
+      gap: 30px;
+    }
+
+    &__item {
+      margin: 20px;
+      padding: 40px;
+
+      h1 {
+        font-size: 3.5rem;
+        padding-bottom: 15px;
+      }
+    }
+
+    &__event {
+      font-size: 1.6rem;
+    }
+
+    &__address {
+      font-size: 1.4rem;
+    }
+
+    &__button {
+      font-size: 1.3rem;
+      padding: 15px 35px;
+    }
+
+    &__logo {
+      width: 200px;
+      height: 200px;
+      margin: 35px 0;
+    }
+  }
+}
+
+// 4K screens
+@include min-4k {
+  .location {
+    &__content {
+      gap: 50px;
+    }
+
+    &__item {
+      padding: 50px;
+
+      h1 {
+        font-size: 4rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+    }
+
+    &__logo {
+      width: 220px;
+      height: 220px;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+@use '../../../styles/animations.scss' as *;
+@use '../../../styles/variables.scss' as *;
+
+.information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: clamp(25px, 4vw, 50px);
+  gap: clamp(30px, 5vw, 70px);
+  padding: 0 clamp(10px, 2vw, 30px);
+
+  &__content {
+    margin: 0 clamp(10px, 2vw, 20px);
+    text-align: justify;
+    text-justify: inter-word;
+    max-width: 1200px;
+    width: 100%;
+    @include fadeIn;
+    font-size: $body-mobile;
+    line-height: 1.7;
+    color: #333;
+  }
+}
+
+// Laptop enhancements (1366x768)
+@include min-lg {
+  .information {
+    margin-top: 40px;
+    gap: 50px;
+    padding: 0 30px;
+
+    &__content {
+      font-size: $body-laptop;
+      line-height: 1.7;
+      margin: 0 20px;
+    }
+  }
+}
+
+// Large desktop
+@include min-xxl {
+  .information {
+    margin-top: 60px;
+    gap: 80px;
+    padding: 0 40px;
+
+    &__content {
+      font-size: $body-desktop;
+      line-height: 1.9;
+      margin: 0 30px;
+    }
+  }
+}
+
+// 4K screens
+@include min-4k {
+  .information {
+    &__content {
+      max-width: 1400px;
+      font-size: $body-xxl;
+    }
+  }
+}

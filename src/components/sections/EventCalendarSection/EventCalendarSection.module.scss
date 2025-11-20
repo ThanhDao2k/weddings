@@ -1,0 +1,376 @@
+@use '../../../styles/animations.scss' as *;
+@use '../../../styles/variables.scss' as *;
+
+$shadow-text: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+.calendar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin-top: clamp(40px, 6vw, 80px);
+  padding: clamp(40px, 6vw, 80px) 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    padding: clamp(30px, 5vw, 60px) clamp(15px, 3vw, 40px);
+    max-width: 900px;
+    width: 100%;
+  }
+
+  &__month {
+    font-family: 'Great Vibes', cursive;
+    font-size: $h1-mobile;
+    text-align: center;
+    color: $color-white;
+    text-shadow: $shadow-text;
+    margin-bottom: clamp(25px, 4vw, 45px);
+    margin-top: 0;
+    font-weight: 400;
+    @include zoomIn;
+  }
+
+  &__weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: clamp(6px, 1.5vw, 15px);
+    margin-bottom: clamp(12px, 2vw, 20px);
+    text-align: center;
+    @include slideLeft;
+
+    div {
+      color: $color-white;
+      @include fluid-font(0.7rem, 1rem);
+      font-weight: 600;
+      text-shadow: $shadow-text;
+      letter-spacing: clamp(0.5px, 0.1vw, 1.5px);
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: clamp(6px, 1.2vw, 12px);
+    @include slideUpDelay(0.3s);
+
+    div {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-white;
+      @include fluid-font(0.95rem, 1.3rem);
+      font-weight: 500;
+      text-shadow: $shadow-text;
+      position: relative;
+      border-radius: clamp(4px, 0.8vw, 8px);
+      transition: all 0.3s ease;
+
+      &:not(.empty):hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+      }
+    }
+
+    .empty {
+      visibility: hidden;
+    }
+
+    .intimate_party_day,
+    .wedding_day {
+      position: relative;
+      font-weight: 700;
+      @include fluid-font(1.1rem, 1.6rem);
+      color: #f8c5c5;
+
+      .heart {
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: clamp(3.5rem, 7vw, 6rem);
+        animation: heartbeat 1.5s ease-in-out infinite;
+      }
+
+      .heart_light {
+        color: #ffc8e4;
+      }
+
+      .heart_deep {
+        color: #f56782;
+      }
+    }
+  }
+
+  &__legend {
+    margin-top: clamp(30px, 5vw, 50px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(15px, 1.5vw, 12px);
+    background: rgba(0, 0, 0, 0.4);
+    padding: clamp(12px, 2vw, 18px) clamp(18px, 3vw, 28px);
+    border-radius: clamp(10px, 1.5vw, 15px);
+    @include slideRight;
+
+    .legend_item {
+      display: flex;
+      align-items: center;
+      gap: clamp(15px, 2vw, 20px);
+      color: $color-white;
+      @include fluid-font(0.95rem, 1.2rem);
+      text-shadow: $shadow-text;
+    }
+
+    .legend_heart_light {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: #ffc8e4;
+    }
+
+    .legend_heart_deep {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: #f56782;
+    }
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.15);
+  }
+}
+
+// Mobile optimization
+@include max-sm {
+  .calendar {
+    background-attachment: scroll; // Fixed không hoạt động tốt trên mobile
+    margin-top: 35px;
+    padding: 35px 0;
+
+    &__content {
+      padding: 25px 12px;
+    }
+
+    &__month {
+      font-size: 2.5rem;
+      margin-bottom: 22px;
+    }
+
+    &__weekdays {
+      gap: 5px;
+      margin-bottom: 10px;
+
+      div {
+        font-size: 0.7rem;
+      }
+    }
+
+    &__grid {
+      gap: 5px;
+
+      div {
+        font-size: 0.95rem;
+      }
+
+      .intimate_party_day,
+      .wedding_day {
+        font-size: 1.1rem;
+
+        .heart {
+          font-size: 3.2rem;
+        }
+      }
+    }
+
+    &__legend {
+      margin-top: 28px;
+      padding: 10px 16px;
+
+      .legend_item {
+        font-size: 0.95rem;
+      }
+
+      .legend_heart_light,
+      .legend_heart_deep {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+// Laptop enhancements (1366x768)
+@include min-lg {
+  .calendar {
+    margin-top: 50px;
+    padding: 50px 0;
+
+    &__content {
+      max-width: 900px;
+      padding: 40px 30px;
+      transform: scale(0.75);
+    }
+
+    &__month {
+      font-size: $h1-laptop;
+      margin-bottom: 35px;
+    }
+
+    &__weekdays {
+      gap: 10px;
+      margin-bottom: 15px;
+
+      div {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+      }
+    }
+
+    &__grid {
+      gap: 10px;
+
+      div {
+        font-size: 1.4rem;
+
+        &:not(.empty):hover {
+          transform: scale(1.05);
+          background: rgba(255, 255, 255, 0.2);
+        }
+      }
+
+      .intimate_party_day,
+      .wedding_day {
+        font-size: 1.6rem;
+
+        .heart {
+          font-size: 4rem;
+        }
+      }
+    }
+
+    &__legend {
+      margin-top: 40px;
+      padding: 15px 25px;
+      gap: 15px;
+
+      .legend_item {
+        font-size: 1.3rem;
+      }
+
+      .legend_heart_light,
+      .legend_heart_deep {
+        font-size: 2.2rem;
+      }
+    }
+  }
+}
+
+// Large desktop
+@include min-xxl {
+  .calendar {
+    margin-top: 70px;
+    padding: 70px 0;
+
+    &__content {
+      max-width: 1100px;
+      padding: 55px 40px;
+    }
+
+    &__month {
+      font-size: $h1-desktop;
+      margin-bottom: 50px;
+    }
+
+    &__weekdays {
+      gap: 16px;
+      margin-bottom: 22px;
+
+      div {
+        font-size: 2.1rem;
+        letter-spacing: 1.5px;
+      }
+    }
+
+    &__grid {
+      gap: 14px;
+
+      div {
+        font-size: 2.4rem;
+
+        &:not(.empty):hover {
+          transform: scale(1.1);
+          background: rgba(255, 255, 255, 0.25);
+        }
+      }
+
+      .intimate_party_day,
+      .wedding_day {
+        font-size: 2.8rem;
+
+        .heart {
+          font-size: 6.5rem;
+        }
+      }
+    }
+
+    &__legend {
+      margin-top: 55px;
+      padding: 20px 32px;
+      gap: 20px;
+
+      .legend_item {
+        font-size: 2.3rem;
+      }
+
+      .legend_heart_light,
+      .legend_heart_deep {
+        font-size: 3.8rem;
+      }
+    }
+  }
+}
+
+// 4K screens
+@include min-4k {
+  .calendar {
+    &__content {
+      max-width: 1200px;
+    }
+
+    &__month {
+      font-size: $h1-xxl;
+    }
+
+    &__grid {
+      div {
+        font-size: 2.5rem;
+      }
+
+      .intimate_party_day,
+      .wedding_day {
+        font-size: 3rem;
+
+        .heart {
+          font-size: 7rem;
+        }
+      }
+    }
+  }
+}
