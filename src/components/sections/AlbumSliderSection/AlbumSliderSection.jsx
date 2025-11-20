@@ -155,7 +155,7 @@ const AlbumSliderSection = React.memo(
               // onTouchEnd={onTouchEnd}
               // onClick={() => onImageClick(currentImageIndex)}
             >
-            
+
               {/* <div
                 className={style.albumSlider__main_image__img}
                 style={{
@@ -187,7 +187,7 @@ const AlbumSliderSection = React.memo(
             </div> */}
           </div>
         </div>
-      </section>
+    </section>
     );
   }
 );
