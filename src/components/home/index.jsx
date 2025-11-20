@@ -8,6 +8,7 @@ import LocationSection from '../sections/LocationSection';
 import WeddingCeremony from '../sections/WeddingCeremony';
 import { useState } from 'react';
 import AlbumSliderSection from '../sections/AlbumSliderSection';
+import HeadersLayout from '../layout/header';
 
 const Home = () => {
   const [heroRef, showHero] = useScrollAnimation({ threshold: 0.2 });
@@ -25,6 +26,10 @@ const Home = () => {
   });
   const [albumSliderRef, showAlbumSlider] = useScrollAnimation({
     threshold: 0.3,
+  });
+
+  const [headerRef, showHeader] = useScrollAnimation({
+    threshold: 0.03,
   });
 
   const [currentSliderIndex, setCurrentSliderIndex] = useState(0);
@@ -46,7 +51,8 @@ const Home = () => {
 
   return (
     <div className={style.home}>
-      <HeroSection sectionRef={heroRef} showSection={showHero} />
+      <HeadersLayout headerRef={headerRef} showSection={showHeader} />
+      {/* <HeroSection sectionRef={heroRef} showSection={showHero} /> */}
 
       <InvitationSection
         sectionRef={invitationRef}

@@ -1,0 +1,77 @@
+@use '../../styles/animations.scss' as *;
+
+.wedding-card {
+  width: 100%;
+  background-color: #752323;
+  height: auto;
+  padding: 0 20px;
+  color: white;
+
+  .title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 72px; // desktop
+    padding-top: 32px;
+    @include slideLeft;
+
+    @media (max-width: 1024px) {
+      font-size: 48px; // tablet
+    }
+
+    @media (max-width: 768px) {
+      font-size: 32px; // mobile
+      text-align: center;
+    }
+  }
+
+  .date {
+    font-family: 'Great Vibes', cursive;
+    font-size: 46px; // desktop
+    @include slideLeft;
+
+    @media (max-width: 1024px) {
+      font-size: 32px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+
+  .name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 72px;
+    text-align: center;
+    font-weight: 600;
+    @include zoomIn;
+
+    @media (max-width: 1024px) {
+      font-size: 52px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 28px;
+    }
+  }
+
+  .image {
+    display: flex;
+    align-items: center;
+    margin-top: 32px;
+    padding-bottom: 32px;
+    justify-content: center;
+    img {
+      width: 300px; // desktop mặc định
+      height: auto;
+
+      @media (max-width: 1024px) {
+        width: 250px; // tablet
+      }
+
+      @media (max-width: 768px) {
+        width: 200px; // mobile
+      }
+    }
+    @include zoomIn;
+  }
+}

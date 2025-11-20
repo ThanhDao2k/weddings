@@ -8,6 +8,7 @@ const HeroSection = ({ sectionRef, showSection }) => {
         className={style.hero}
         style={{
           backgroundImage: `url(/image/shin-1.jpg)`,
+          // backgroundColor: '#752323',
         }}
       >
         <div
