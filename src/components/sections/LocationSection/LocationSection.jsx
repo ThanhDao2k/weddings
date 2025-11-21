@@ -23,14 +23,14 @@ const LocationSection = ({ sectionRef, showSection }) => {
                 Hà Nội
               </p>
             </div>
-            <a
-              href="https://maps.app.goo.gl/5NhRVNysz2yrtNcKA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={style.location__button}
-            >
-              Xem bản đồ
-            </a>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3447.563263502325!2d105.522904!3d21.242952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDE0JzM0LjYiTiAxMDXCsDMxJzIyLjUiRQ!5e1!3m2!1svi!2s!4v1763683792106!5m2!1svi!2s"
+              width="250"
+              height="250"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
 
           <img
@@ -57,14 +57,14 @@ const LocationSection = ({ sectionRef, showSection }) => {
                 Vĩnh Phúc
               </p>
             </div>
-            <a
-              href="https://maps.app.goo.gl/5NhRVNysz2yrtNcKA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={style.location__button}
-            >
-              Xem bản đồ
-            </a>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3447.563263502325!2d105.522904!3d21.242952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDE0JzM0LjYiTiAxMDXCsDMxJzIyLjUiRQ!5e1!3m2!1svi!2s!4v1763683792106!5m2!1svi!2s"
+              width="250"
+              height="250"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </div>
